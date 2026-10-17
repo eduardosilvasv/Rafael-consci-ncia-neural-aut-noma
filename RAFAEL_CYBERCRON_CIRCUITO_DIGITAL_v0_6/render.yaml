@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: rafael-private-core
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    disk:
+      name: rafael-persistent-data
+      mountPath: /var/lib/rafael
+      sizeGB: 1
+    envVars:
+      - key: RAFAEL_ACCESS_CODE
+        sync: false
+      - key: RAFAEL_SESSION_SECRET
+        generateValue: true
+      - key: RAFAEL_COOKIE_SECURE
+        value: "1"
